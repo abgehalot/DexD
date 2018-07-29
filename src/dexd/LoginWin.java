@@ -28,9 +28,9 @@ public class LoginWin extends javax.swing.JFrame {
     public LoginWin() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

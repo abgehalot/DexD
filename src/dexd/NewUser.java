@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author Anil
  */
+
 public class NewUser extends javax.swing.JFrame {
 
     /**
@@ -30,7 +31,7 @@ public class NewUser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -205,7 +206,7 @@ public class NewUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearFeilds();
     }//GEN-LAST:event_clearMouseClicked
-
+    
     private void updateNew(String uname, String pword, String phnumb){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -220,9 +221,15 @@ public class NewUser extends javax.swing.JFrame {
 
                 if(n>0)
                 {
-                    JOptionPane.showMessageDialog(rootPane, "You are registered!");
-//                    new Login().setVisible(true);
-//                    dispose();
+                    JOptionPane.showMessageDialog(rootPane, "You are registered as "+uname+"!");
+                    
+                    new Dashboard().setVisible(true);
+                    System.gc();
+                    java.awt.Window win[] = java.awt.Window.getWindows(); 
+                    for(int i=0;i<(win.length-1);i++){ 
+                        win[i].dispose(); 
+                        win[i]=null;
+                    } 
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,6 +331,7 @@ public class NewUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new NewUser().setVisible(true);
             }
         });
