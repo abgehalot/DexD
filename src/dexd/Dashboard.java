@@ -35,6 +35,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 720));
+        setMaximumSize(new java.awt.Dimension(1200, 720));
+        setMinimumSize(new java.awt.Dimension(1200, 720));
         setPreferredSize(new java.awt.Dimension(1200, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

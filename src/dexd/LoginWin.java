@@ -5,6 +5,7 @@
  */
 package dexd;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +28,7 @@ public class LoginWin extends javax.swing.JFrame {
     public LoginWin() {
         initComponents();
         this.setLocationRelativeTo(null);
+//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -44,10 +47,15 @@ public class LoginWin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        clear = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 720));
+        setMaximumSize(new java.awt.Dimension(1200, 720));
+        setMinimumSize(new java.awt.Dimension(1200, 720));
         setPreferredSize(new java.awt.Dimension(1200, 720));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 48)); // NOI18N
@@ -71,26 +79,42 @@ public class LoginWin extends javax.swing.JFrame {
                 loginActionPerformed(evt);
             }
         });
+        login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginKeyPressed(evt);
+            }
+        });
         getContentPane().add(login);
-        login.setBounds(660, 520, 70, 23);
+        login.setBounds(600, 520, 100, 30);
 
         singUp.setBackground(new java.awt.Color(204, 0, 51));
         singUp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        singUp.setForeground(new java.awt.Color(0, 102, 102));
         singUp.setText("Create");
+        singUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                singUpMouseClicked(evt);
+            }
+        });
+        singUp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                singUpKeyPressed(evt);
+            }
+        });
         getContentPane().add(singUp);
-        singUp.setBounds(540, 520, 80, 23);
+        singUp.setBounds(860, 520, 100, 30);
 
         jLabel3.setFont(new java.awt.Font("Orator Std", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Username :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(360, 360, 180, 30);
+        jLabel3.setBounds(380, 360, 180, 30);
 
         jLabel4.setFont(new java.awt.Font("Orator Std", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 255));
         jLabel4.setText("Password:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(360, 450, 180, 30);
+        jLabel4.setBounds(380, 450, 180, 30);
 
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +122,7 @@ public class LoginWin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(username);
-        username.setBounds(660, 360, 200, 28);
+        username.setBounds(600, 360, 230, 28);
 
         password.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         password.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -108,7 +132,24 @@ public class LoginWin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(password);
-        password.setBounds(660, 450, 200, 30);
+        password.setBounds(600, 450, 230, 30);
+
+        clear.setBackground(new java.awt.Color(0, 0, 0));
+        clear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        clear.setForeground(new java.awt.Color(255, 255, 255));
+        clear.setText("Clear");
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearMouseClicked(evt);
+            }
+        });
+        clear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                clearKeyPressed(evt);
+            }
+        });
+        getContentPane().add(clear);
+        clear.setBounds(730, 520, 100, 30);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dexd/loginBack.jpeg"))); // NOI18N
@@ -128,7 +169,47 @@ public class LoginWin extends javax.swing.JFrame {
     }//GEN-LAST:event_loginActionPerformed
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-        
+        login();
+    }//GEN-LAST:event_loginMouseClicked
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
+        // TODO add your handling code here:
+        username.setText(null);
+        password.setText(null);
+    }//GEN-LAST:event_clearMouseClicked
+
+    private void singUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_singUpMouseClicked
+        // TODO add your handling code here:
+        new NewUser().setVisible(true);
+    }//GEN-LAST:event_singUpMouseClicked
+
+    private void loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyPressed
+        // TODO add your handling code here:
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER)||(evt.getKeyCode() == KeyEvent.VK_SPACE))
+            login();
+    }//GEN-LAST:event_loginKeyPressed
+
+    private void clearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clearKeyPressed
+        // TODO add your handling code here:
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER)||(evt.getKeyCode() == KeyEvent.VK_SPACE)){
+            username.setText(null);
+            password.setText(null);
+        }
+    }//GEN-LAST:event_clearKeyPressed
+
+    private void singUpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singUpKeyPressed
+        // TODO add your handling code here:
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER)||(evt.getKeyCode() == KeyEvent.VK_SPACE)){
+            new NewUser().setVisible(true);
+        }
+            
+    }//GEN-LAST:event_singUpKeyPressed
+    
+    private void login(){
         try{
             String user=username.getText();
             String pass=password.getText();
@@ -150,10 +231,9 @@ public class LoginWin extends javax.swing.JFrame {
 
             if(row==0)
             {
-                JOptionPane.showMessageDialog(rootPane, "No Record exists, please enter correct USERNAME and PASSWORD. ");
+                JOptionPane.showMessageDialog(rootPane, "Please enter valid username and password.\nIf you are a new user, press on create!");
             }
             else {
-//                new HOME(user).setVisible(true);
                 JOptionPane.showMessageDialog(rootPane, "Welcome "+ user+"!");
                 new Dashboard(user).setVisible(true);
                 dispose();
@@ -161,12 +241,8 @@ public class LoginWin extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LoginWin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_loginMouseClicked
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -201,8 +277,11 @@ public class LoginWin extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
