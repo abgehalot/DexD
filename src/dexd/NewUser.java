@@ -5,6 +5,7 @@
  */
 package dexd;
 
+import java.awt.event.KeyEvent;
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -139,6 +140,11 @@ public class NewUser extends javax.swing.JFrame {
                 signUpActionPerformed(evt);
             }
         });
+        signUp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                signUpKeyPressed(evt);
+            }
+        });
         getContentPane().add(signUp);
         signUp.setBounds(410, 420, 75, 30);
 
@@ -154,6 +160,11 @@ public class NewUser extends javax.swing.JFrame {
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
+            }
+        });
+        clear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                clearKeyPressed(evt);
             }
         });
         getContentPane().add(clear);
@@ -210,6 +221,18 @@ public class NewUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearFeilds();
     }//GEN-LAST:event_clearMouseClicked
+
+    private void signUpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signUpKeyPressed
+        // TODO add your handling code here:
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER)||(evt.getKeyCode() == KeyEvent.VK_SPACE))
+            SignUp();
+    }//GEN-LAST:event_signUpKeyPressed
+
+    private void clearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_clearKeyPressed
+        // TODO add your handling code here:
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER)||(evt.getKeyCode() == KeyEvent.VK_SPACE))
+            clearFeilds();
+    }//GEN-LAST:event_clearKeyPressed
     
     private void updateNew(String uname, String pword, String phnumb){
         try{
