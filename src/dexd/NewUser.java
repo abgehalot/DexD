@@ -162,10 +162,14 @@ public class NewUser extends javax.swing.JFrame {
         ilog.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
         ilog.setForeground(new java.awt.Color(255, 0, 0));
         ilog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ilog.setToolTipText("");
+        ilog.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        ilog.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         ilog.setMaximumSize(new java.awt.Dimension(340, 100));
         ilog.setMinimumSize(new java.awt.Dimension(340, 100));
+        ilog.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         getContentPane().add(ilog);
-        ilog.setBounds(0, 480, 800, 100);
+        ilog.setBounds(230, 480, 340, 100);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dexd/600x550.jpg"))); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(600, 550));
@@ -237,7 +241,7 @@ public class NewUser extends javax.swing.JFrame {
     }
     
     private void SignUp(){
-        ilog.setText("");
+        ilog.setText("<html><p style='text-align:center'>");
         String uname = username.getText();
         String pword = password.getText();
         String rpword = rpassword.getText();
@@ -287,12 +291,16 @@ public class NewUser extends javax.swing.JFrame {
         }
         if(flag==1){
             updateNew(uname,pword,phnumb);
+        }else{
+            String strm= ilog.getText();
+            ilog.setText(strm+"</p></html");
         }
     }
     
     private void setIlog(String s){
         String str = ilog.getText();
-        ilog.setText(str + " \n" + s);
+        str +=s +" <br>";
+        ilog.setText(str);
     }
     
     private void clearFeilds(){
