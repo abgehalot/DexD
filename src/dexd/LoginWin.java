@@ -5,6 +5,7 @@
  */
 package dexd;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,7 +29,9 @@ public class LoginWin extends javax.swing.JFrame {
     public LoginWin() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
+//        String title="<html>&#x1F4D6 Welcome to DexD</html";
+//        jframe.setTitle(title);
     }
     
     /**
@@ -51,6 +54,8 @@ public class LoginWin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Welcome to DexD | A digital diary");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("openBook.png")));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 720));
         setMaximumSize(new java.awt.Dimension(1200, 720));
         setMinimumSize(new java.awt.Dimension(1200, 720));
@@ -153,9 +158,12 @@ public class LoginWin extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dexd/loginBack.jpeg"))); // NOI18N
+        jLabel2.setInheritsPopupMenu(false);
         jLabel2.setPreferredSize(new java.awt.Dimension(1200, 720));
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 1200, 720);
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,14 +222,13 @@ public class LoginWin extends javax.swing.JFrame {
             String user=username.getText();
             String pass=password.getText();
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
-            String str="select * from dexd.users where uname=? and pword=?";
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dexd","root","");
+            String str="select * from users where uname=? and pword=?";
             PreparedStatement ps=con.prepareStatement(str);
             ps.setString(1, user);
             ps.setString(2, pass);
 
             int row=0;
-
             ResultSet rs=ps.executeQuery();
 
             while(rs.next())
@@ -231,7 +238,7 @@ public class LoginWin extends javax.swing.JFrame {
 
             if(row==0)
             {
-                JOptionPane.showMessageDialog(rootPane, "Please enter valid username and password.\nIf you are a new user, press on create!");
+                JOptionPane.showMessageDialog(rootPane, "Please enter valid username and password.\nIf you are a new user, click on create!");
             }
             else {
                 JOptionPane.showMessageDialog(rootPane, "Welcome "+ user+"!");
